@@ -1,0 +1,1 @@
+@reboot sudo NetworkManager && python3 IP_CHECK.py
