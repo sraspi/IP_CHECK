@@ -13,16 +13,16 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 
-def ip_mail():
-    Dateiname = "/home/pi/ip.txt"
-
+def koji_mail(T1):
+    
+    
     try:
     #E-Mail an stefan.taubert.apweiler@gmail.com:
 
      
-      print("E-Mail wird erstellt")
-      Inhalt = "neue IP im Anhang"
-      Betreff = ("TGZ-IP")
+      print("E-Mail wird erstellt", + T1)
+      Inhalt = "Koji-Temperatur zu hoch!"
+      Betreff = ("Koji-Temp: " + str(T1))
       sender_email = "sraspi21@gmail.com"
       receiver_email = "sraspi21@gmail.com"
       password = "rwnqyynanebneqbj"
@@ -38,7 +38,7 @@ def ip_mail():
       # Add body to email
       message.attach(MIMEText(Inhalt, "plain"))
 
-      filename = "/home/pi/ip.txt" # In same directory as script
+      filename = "/home/pi/stta/data/Koji.txt" # In same directory as script
            
       # Open PDF file in binary mode
       with open(filename, "rb") as attachment:
@@ -53,7 +53,7 @@ def ip_mail():
 
             
         # Add header as key/value pair to attachment part
-        part.add_header("Content-Disposition", "attachment; filename=ip.txt",)
+        part.add_header("Content-Disposition", "attachment; filename=Koji.txt",)
         # Add attachment to message and convert message to string
         message.attach(part)
         text = message.as_string()
@@ -69,4 +69,5 @@ def ip_mail():
     except:
         print("error")
         #sys.exit()
+
 
